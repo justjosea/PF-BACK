@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+const mongoose = require('mongoose');
 
 const reviewSchema = mongoose.Schema({
     user: {type: mongoose.Schema.ObjectId, ref: 'User', required: true},

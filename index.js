@@ -1,5 +1,6 @@
-import http from 'http';
-import {App} from './app'
+const http = require('http');
+const {App} = require('./app');
+
 const app = App()
 
 const server = http.createServer(app);
