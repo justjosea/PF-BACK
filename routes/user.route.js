@@ -10,4 +10,4 @@ router.put('/', controller.updateUser);
 
 router.delete('/', controller.deleteUser);
 
-export default router;
+module.exports = router;

@@ -1,4 +1,4 @@
-exports.Sucess = (data) => {
+exports.Success = (data) => {
 	const response = {
 		status: true,
 		data: data,

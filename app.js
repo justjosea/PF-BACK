@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const userRoutes = require('./routes/user.route')
 
 export function ShoppingApp() {
     
@@ -18,6 +19,8 @@ export function ShoppingApp() {
         next();
     });
 
+    app.use('/user', userRoutes)
+
     app.use(async (req, res) => {
         res.status(404).json({message: "Not found."})
     });
@@ -30,7 +33,7 @@ export function App() {
     const app = ShoppingApp()
 
     mongoose.connect(
-        "mongodb+srv://rootback:YPuJKnjzDoc52cDm@backtw.sll8h6g.mongodb.net/?retryWrites=true&w=majority"
+        "mongodb+srv://rootback:YPuJKnjzDoc52cDm@backtw.sll8h6g.mongodb.net/Tiendita?retryWrites=true&w=majority"
     )
     .then(() => {
         console.log("Conectado a la base de datos");
