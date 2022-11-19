@@ -1,17 +1,13 @@
-import express from 'express'
-
+const express = require('express');
 const router = express.Router();
+const controller = require('../controllers/user.controller')
 
-router.get('/', async (req, res) => {
-    res.status(200).json(users)
-});
+router.get('/', controller.getUsers);
 
-router.post('/', async (req, res) => {
-    res.status(200).json(data)
-});
+router.post('/', controller.createUser);
 
-router.post('/login', async (req, res) => {
-    res.status(200).json(data)
-});
+router.put('/', controller.updateUser);
+
+router.delete('/', controller.deleteUser);
 
 export default router;
