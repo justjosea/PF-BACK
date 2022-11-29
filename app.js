@@ -4,6 +4,7 @@ const userRoutes = require('./routes/user.route')
 const categorieRoutes = require('./routes/categorie.route')
 const reviewRoutes = require('./routes/review.route')
 //const productRoutes = require('./routes/product.route')
+const kartRoutes = require('./routes/kart.route')
 
 export function ShoppingApp() {
     
@@ -26,6 +27,7 @@ export function ShoppingApp() {
     app.use('/categorie', categorieRoutes)
     app.use('/review', reviewRoutes)
    // app.use('/product', productRoutes)
+    app.use('/kart', kartRoutes)
 
     app.use(async (req, res) => {
         res.status(404).json({message: "Not found."})
