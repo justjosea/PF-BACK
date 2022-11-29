@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
-const purchaseSchema = mongoose.Schema({
+const purchaseSchema = new mongoose.Schema({
     user: {type: mongoose.Schema.ObjectId, ref: 'User', required: true },
     products: [{type: mongoose.Schema.ObjectId, ref: 'Product', required: true}],
 });
 
-export default mongoose.model('Purchase', purchaseSchema);
+module.exports = mongoose.model('Purchase', purchaseSchema);
