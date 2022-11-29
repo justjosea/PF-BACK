@@ -46,27 +46,6 @@ exports.getReviews = async (req, res) => {
     })
 };
 
-exports.updateReview = async (req, res) => {
-    const { body } = req;
-    const review = await Review.findByIdAndUpdate(body.id, req.body)
-    await review.save()
-        .then(() => {
-            res
-                .status(200)
-                .send(Success("Review actualizada exitosamente"));
-        })
-        .catch((error) => {
-            console.log(error);
-            res
-                .status(500)
-                .send(
-                    Error(
-                        "Ha ocurrido un error, por favor intenta mas tarde"
-                    )
-                );
-        });
-}
-
 exports.deleteReview = async (req, res) => {
     const { id } = req.body;
 

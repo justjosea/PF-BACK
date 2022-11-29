@@ -6,8 +6,6 @@ router.get('/', controller.getReviews);
 
 router.post('/', controller.createReview);
 
-router.put('/', controller.updateReview);
-
 router.delete('/', controller.deleteReview);
 
 router.get('/user/:idUser', controller.getReviewsByUser);
