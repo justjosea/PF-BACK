@@ -16,4 +16,8 @@ router.get('/product/:idProduct', controller.getReviewsByProduct);
 
 router.get('/rating/:rating', controller.getReviewsByRating);
 
+router.get('/user/:idUser/rating/:rating', controller.getUserReviewsByRating)
+
+router.get('/product/:idProduct/rating/:rating', controller.getProductReviewsByRating)
+
 module.exports = router;

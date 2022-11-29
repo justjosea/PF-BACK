@@ -135,8 +135,50 @@ exports.getReviewsByProduct = async (req, res) => {
 
 exports.getReviewsByRating = async (req, res) => {
     const {rating} = req.params;
-
+    console.log(rating)
     Review.find({rating: rating},function (error, docs) {
+        if (error) {
+            console.log(error);
+            res
+                .status(500)
+                .send(
+                    Error(
+                        "Ha ocurrido un error, por favor intenta mas tarde"
+                    )
+                );
+        }
+        else {
+            res
+                .status(200)
+                .send(Success(docs));
+        }
+    })
+}
+
+exports.getUserReviewsByRating = async (req, res) => {
+    const {idUser, rating} = req.params;
+    Review.find({user: idUser, rating: rating},function (error, docs) {
+        if (error) {
+            console.log(error);
+            res
+                .status(500)
+                .send(
+                    Error(
+                        "Ha ocurrido un error, por favor intenta mas tarde"
+                    )
+                );
+        }
+        else {
+            res
+                .status(200)
+                .send(Success(docs));
+        }
+    })
+}
+
+exports.getProductReviewsByRating = async (req, res) => {
+    const {idProduct, rating} = req.params;
+    Review.find({product: idProduct, rating: rating},function (error, docs) {
         if (error) {
             console.log(error);
             res
