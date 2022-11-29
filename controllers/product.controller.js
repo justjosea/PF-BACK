@@ -1,60 +1,22 @@
-const User = require("../models/user.model")
-const {Error, Success} = require("../functions/responseFormats")  
+const Product = require("../models/product.model")
+const {Error, Success} = require("../functions/responseFormats") 
 
-exports.getReviewsByUser = async (req, res) => {   
+getProductReviews = async (req, res) => {
     const { id } = req.params;
-    const user = await User.findById(id).populate('reviews');
+    const product = await Product.findById(id).populate('reviews');
 }
 
 
-// CRUD de usuarios hecho
 
-exports.createUser = async (req, res) => {
+
+
+//  CRUD  de productos hecho
+
+exports.updateProduct = async (req, res) => {
     const { body } = req;
+    const product = await Product.findByIdAndUpdate
 
-    const user = new User(body);
-    await user.save()
-        .then(() => {
-            res
-                .status(200)
-                .send(Success("Usuario creado exitosamente"));
-        })
-        .catch((error) => {
-            console.log(error);
-            res
-                .status(500)
-                .send(
-                    Error(
-                        "Ha ocurrido un error, por favor intenta mas tarde"
-                    )
-                );
-        });
-};
-
-exports.getUsers = async (req, res) => {
-    User.find(function (error, docs) {
-        if (error) {
-            console.log(error);
-            res
-                .status(500)
-                .send(
-                    Error(
-                        "Ha ocurrido un error, por favor intenta mas tarde"
-                    )
-                );
-        }
-        else {
-            res
-                .status(200)
-                .send(Success(docs));
-        }
-    })
-};
-
-exports.updateUser = async (req, res) => {
-    const { body } = req;
-    const user = await User.findByIdAndUpdate(body.id, req.body)
-    await user.save()
+    await product.save()
         .then(() => {
             res
                 .status(200)
@@ -72,10 +34,10 @@ exports.updateUser = async (req, res) => {
         });
 }
 
-exports.deleteUser = async (req, res) => {
-    const { id } = req.body;
+exports.deleteProduct = async (req, res) => {  
+    const { id } = req.params;
 
-    User.findByIdAndDelete(id, function (error, docs) {
+    Product.findByIdAndDelete(id, function (error, docs) {
         if (error) {
             console.log(error);
             res
@@ -92,4 +54,56 @@ exports.deleteUser = async (req, res) => {
                 .send(Success("Usuario eliminado exitosamente"));
         }
     });
+}
+
+exports.createProduct = async (req, res) => {
+    const { body } = req;
+
+    const product = new Product(body);
+    await product.save()
+        .then(() => {
+            res
+                .status(200)
+                .send(Success("Producto creado exitosamente"));
+        })
+        .catch((error) => {
+            console.log(error);
+            res
+                .status(500)
+                .send(
+                    Error(
+                        "Ha ocurrido un error, por favor intenta mas tarde"
+                    )
+                );
+        });
+}
+
+exports.getProducts = async (req, res) => {
+    Product.find(function (error, docs) {
+        if (error) {
+            console.log(error);
+            res
+                .status(500)
+                .send(
+                    Error(
+                        "Ha ocurrido un error, por favor intenta mas tarde"
+                    )
+                );
+        }
+        else {
+            res
+                .status(200)
+                .send(Success(docs));
+        }
+    })
+}
+
+exports.getProductById = async (req, res) => {  
+    const { id } = req.params;
+    const product = await Product.findById  (id);
+}
+
+exports.getProductByName = async (req, res) => {  
+    const { name } = req.params;
+    const product = await Product.find({name: name});  
 }
