@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const userRoutes = require('./routes/user.route')
 const categorieRoutes = require('./routes/categorie.route')
+const reviewRoutes = require('./routes/review.route')
 
 export function ShoppingApp() {
     
@@ -22,6 +23,7 @@ export function ShoppingApp() {
 
     app.use('/user', userRoutes)
     app.use('/categorie', categorieRoutes)
+    app.use('/review', reviewRoutes)
 
     app.use(async (req, res) => {
         res.status(404).json({message: "Not found."})
