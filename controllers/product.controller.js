@@ -1,14 +1,6 @@
 const Product = require("../models/product.model")
 const {Error, Success} = require("../functions/responseFormats") 
 
-// getProductReviews = async (req, res) => {
-//     const { id } = req.params;
-//     const product = await Product.findById(id).populate('reviews');
-// }
-
-
-
-
 
 //  CRUD  de productos hecho
 
@@ -20,7 +12,7 @@ exports.updateProduct = async (req, res) => {
         .then(() => {
             res
                 .status(200)
-                .send(Success("Usuario actualizado exitosamente"));
+                .send(Success("Producto actualizado exitosamente"));
         })
         .catch((error) => {
             console.log(error);
@@ -51,7 +43,7 @@ exports.deleteProduct = async (req, res) => {
         else {
             res
                 .status(200)
-                .send(Success("Usuario eliminado exitosamente"));
+                .send(Success("Producto eliminado exitosamente"));
         }
     });
 }
@@ -101,7 +93,7 @@ exports.getProducts = async (req, res) => {
 // Este get producto por id no funciona
 exports.getProductById = async (req, res) => {  
     const { id } = req.params;
-    product.find({id: id}, function (error, docs) {
+    Product.findById(id, function (error, docs) {
         if (error) {
             console.log(error);
             res

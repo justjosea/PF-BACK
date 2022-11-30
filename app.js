@@ -28,7 +28,6 @@ export function ShoppingApp() {
     app.use('/user', userRoutes)
     app.use('/categorie', categorieRoutes)
     app.use('/review', reviewRoutes)
-   // app.use('/product', productRoutes)
     app.use('/product', productRoutes)
 
     app.use('/kart', kartRoutes)
