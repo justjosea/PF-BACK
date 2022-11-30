@@ -14,6 +14,8 @@ router.get('/byName', controller.getProductByName);
 
 router.get('/byCategories', controller.getProductByCategories);
 
+router.get('/byCategorieName', controller.getProductByCategorieName);
+
 router.get('/:id', controller.getProductById);
 
 module.exports = router;

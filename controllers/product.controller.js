@@ -1,5 +1,7 @@
 const Product = require("../models/product.model")
-const {Error, Success} = require("../functions/responseFormats") 
+const Categorie = require("../models/categorie.model")
+const {Error, Success} = require("../functions/responseFormats"); 
+const productModel = require("../models/product.model");
 
 
 //  CRUD  de productos hecho
@@ -154,6 +156,28 @@ exports.getProductByCategories = async (req, res) => {
     }
    
     
+}
+
+exports.getProductByCategorieName = async (req, res) =>{
+    const { name } = req.body;
+   
+    try{
+        const categorie = await Categorie.findOne({name: name}, '_id')
+        let products = await Product.find()
+        products = products.filter(product => product.categories.includes(categorie._id))
+        res.status(200).send(Success(products));
+    }
+    catch(error){
+        console.log(error);
+        res
+            .status(500)
+            .send(
+                Error(
+                    "Ha ocurrido un error, por favor intenta mas tarde"
+                )
+            );
+    }
+
 }
 
 function checkCategories(main, toLook){
