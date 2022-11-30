@@ -10,4 +10,6 @@ router.put('/', controller.updateUser);
 
 router.delete('/', controller.deleteUser);
 
+router.put('/buyKart', controller.buyKart)
+
 module.exports = router;
