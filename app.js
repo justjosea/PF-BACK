@@ -6,6 +6,8 @@ const reviewRoutes = require('./routes/review.route')
 //const productRoutes = require('./routes/product.route')
 const kartRoutes = require('./routes/kart.route')
 
+const productRoutes = require('./routes/product.route')
+
 export function ShoppingApp() {
     
     const app = express();
@@ -27,6 +29,8 @@ export function ShoppingApp() {
     app.use('/categorie', categorieRoutes)
     app.use('/review', reviewRoutes)
    // app.use('/product', productRoutes)
+    app.use('/product', productRoutes)
+
     app.use('/kart', kartRoutes)
 
     app.use(async (req, res) => {

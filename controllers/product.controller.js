@@ -1,10 +1,10 @@
 const Product = require("../models/product.model")
 const {Error, Success} = require("../functions/responseFormats") 
 
-getProductReviews = async (req, res) => {
-    const { id } = req.params;
-    const product = await Product.findById(id).populate('reviews');
-}
+// getProductReviews = async (req, res) => {
+//     const { id } = req.params;
+//     const product = await Product.findById(id).populate('reviews');
+// }
 
 
 
@@ -14,7 +14,7 @@ getProductReviews = async (req, res) => {
 
 exports.updateProduct = async (req, res) => {
     const { body } = req;
-    const product = await Product.findByIdAndUpdate
+    const product = await Product.findByIdAndUpdate(body.id, req.body);
 
     await product.save()
         .then(() => {
@@ -35,7 +35,7 @@ exports.updateProduct = async (req, res) => {
 }
 
 exports.deleteProduct = async (req, res) => {  
-    const { id } = req.params;
+    const { id } = req.body;
 
     Product.findByIdAndDelete(id, function (error, docs) {
         if (error) {
@@ -98,12 +98,29 @@ exports.getProducts = async (req, res) => {
     })
 }
 
+// Este get producto por id no funciona
 exports.getProductById = async (req, res) => {  
     const { id } = req.params;
-    const product = await Product.findById  (id);
+    product.find({id: id}, function (error, docs) {
+        if (error) {
+            console.log(error);
+            res
+                .status(500)
+                .send(
+                    Error(
+                        "Ha ocurrido un error, por favor intenta mas tarde"
+                    )
+                );
+        }
+        else {
+            res
+                .status(200)
+                .send(Success(docs));
+        }
+    })
 }
 
 exports.getProductByName = async (req, res) => {  
-    const { name } = req.params;
+    const { name } = req.body;
     const product = await Product.find({name: name});  
 }
