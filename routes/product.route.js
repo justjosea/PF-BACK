@@ -12,6 +12,8 @@ router.delete('/', controller.deleteProduct);
 
 router.get('/byName', controller.getProductByName);
 
+router.get('/byCategories', controller.getProductByCategories);
+
 router.get('/:id', controller.getProductById);
 
 module.exports = router;

@@ -132,3 +132,30 @@ exports.getProductByName = async (req, res) => {
         }
     })
 }
+
+exports.getProductByCategories = async (req, res) => {  
+    const { categories } = req.body;
+    try{
+        let products = await Product.find()
+    
+        products = await products.filter( product => checkCategories(product.categories, categories))
+      
+        res.status(200).send(Success(products));
+    }
+    catch(error){
+        console.log(error);
+            res
+                .status(500)
+                .send(
+                    Error(
+                        "Ha ocurrido un error, por favor intenta mas tarde"
+                    )
+                );
+    }
+   
+    
+}
+
+function checkCategories(main, toLook){
+    return toLook.every(categorie => main.includes(categorie))
+} 
