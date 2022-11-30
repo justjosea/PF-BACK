@@ -113,5 +113,22 @@ exports.getProductById = async (req, res) => {
 
 exports.getProductByName = async (req, res) => {  
     const { name } = req.body;
-    const product = await Product.find({name: name});  
+    
+    Product.find({name: name}, function (error, docs) {
+        if (error) {
+            console.log(error);
+            res
+                .status(500)
+                .send(
+                    Error(
+                        "Ha ocurrido un error, por favor intenta mas tarde"
+                    )
+                );
+        }
+        else {
+            res
+                .status(200)
+                .send(Success(docs));
+        }
+    })
 }
