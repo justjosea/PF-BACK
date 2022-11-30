@@ -90,7 +90,6 @@ exports.getProducts = async (req, res) => {
     })
 }
 
-// Este get producto por id no funciona
 exports.getProductById = async (req, res) => {  
     const { id } = req.params;
     Product.findById(id, function (error, docs) {
