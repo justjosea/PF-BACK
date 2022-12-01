@@ -2,6 +2,28 @@ const Kart = require("../models/kart.model")
 
 const {Error, Success} = require("../functions/responseFormats")  
 
+exports.getProductByUser = async (req, res) => {
+    const {userId, product} = req.params;
+    Kart.find({user: userId}, function(error, docs){
+        if (error) {
+            console.log(error);
+            res
+                .status(500)
+                .send(
+                    Error(
+                        "Ha ocurrido un error, por favor intenta mas tarde"
+                    )
+                );
+        }
+        else {
+            res
+                .status(200)
+                .send(Success(docs));
+        }
+    })
+    }
+
+
 exports.getKartByUser = async (req, res) => {
     const {idUser} = req.params;
 

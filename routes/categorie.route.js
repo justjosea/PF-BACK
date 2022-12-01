@@ -10,4 +10,5 @@ router.put('/', controller.updateCategorie);
 
 router.delete('/', controller.deleteCategorie);
 
+// router.get('/:productsByUser', controller.getproductsByUser);
 module.exports = router;

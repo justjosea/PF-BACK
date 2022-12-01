@@ -8,4 +8,7 @@ router.post('/', controller.createKartItem);
 
 router.delete('/:idUser', controller.deleteKartItem);
 
+router.get('/:idUser/product', controller.getProductByUser);
+
+
 module.exports = router;
