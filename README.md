@@ -14,6 +14,6 @@ Para iniciar el proyecto, ejecutar "npm start"
 Para iniciar los test, ejecutar "npm test". 
 
 
-* En caso de querer iniciar los test de un endpoint especifico, ejecutar "npm test" + "/test/[nombre endpoint]. 
+* En caso de querer iniciar los test de un endpoint especifico, ejecutar "npm test" + "/test/[nombre endpoint]". 
 
 **** Por ejemplo: "npm test /test/user"
